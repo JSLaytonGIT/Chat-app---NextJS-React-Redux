@@ -11,7 +11,7 @@ export default function Home() {
             </Head>
             <main>
                 <Provider store={store}>
-                    <ChatWindow/>
+                    <ChatWindow />
                 </Provider>
             </main>
         </div>

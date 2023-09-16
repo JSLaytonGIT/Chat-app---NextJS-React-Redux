@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { addMessage } from '../store/actions/chatActions';
-import { inputField, sendButton } from '@/styles/chatWindowStyles'
+import { inputField, sendButton } from '@/styles/chatWindowStyles';
 
-const MessageInput = () => {
+const MessageInput = ({ onSendMessage }) => {
   const dispatch = useDispatch();
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (newMessage.trim() !== '') {
-      dispatch(addMessage({ text: newMessage, user: 'You' }));
       setNewMessage('');
+      onSendMessage(newMessage);
     }
   };
 
@@ -29,7 +29,7 @@ const MessageInput = () => {
         placeholder="Type your message..."
         value={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}
-        onKeyPress={handleKeyPress}
+        onKeyDown={handleKeyPress}
         InputProps={{ style: inputField }}
       />
       <Button

@@ -53,6 +53,6 @@ export const friendMessageStyle = {
     borderRadius: '20px',
     alignSelf: 'flex-start',
     width: 'fit-content',
-    maxWidth: '300px',
+    maxWidth: '500px',
 };
   

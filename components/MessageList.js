@@ -1,10 +1,10 @@
-import React from 'react';
 import { Box } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { userMessageStyle, friendMessageStyle } from '@/styles/chatWindowStyles';
 
 const MessageList = () => {
   const messages = useSelector((state) => state.chat.messages);
+  console.log(messages);
 
   return (
     <Box>
