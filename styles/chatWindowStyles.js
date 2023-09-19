@@ -3,7 +3,7 @@ export const messageInputContainer = {
     bottom: '20px',
     left: '50%',
     transform: 'translateX(-50%)',
-    width: '80%',
+    width: '50%',
 };
 
 export const chatWindowContainer = {
@@ -13,6 +13,9 @@ export const chatWindowContainer = {
     position: 'relative',
     backgroundColor: '#333542',
     padding: '20px',
+    paddingBottom: '100px',
+    paddingLeft: '300px',
+    paddingRight: '300px',
 }
 
 export const inputField = {
@@ -40,9 +43,11 @@ export const userMessageStyle = {
     padding: '12px',
     marginBottom: '8px',
     borderRadius: '20px',
-    alignSelf: 'flex-end',
+    marginLeft: 'auto',
     width: 'fit-content',
-    maxWidth: '300px',
+    maxWidth: '500px',
+    fontSize: '16px',
+    fontFamily: 'Helvetica, sans-serif',
 };
   
 export const friendMessageStyle = {
@@ -51,8 +56,24 @@ export const friendMessageStyle = {
     padding: '12px',
     marginBottom: '8px',
     borderRadius: '20px',
-    alignSelf: 'flex-start',
+    marginRight: 'auto',
     width: 'fit-content',
     maxWidth: '500px',
+    fontSize: '16px',
+    fontFamily: 'Helvetica, sans-serif',
+};
+
+export const loadingMessageStyle = {
+    backgroundColor: '#301c67',
+    color: 'white',
+    padding: '12px',
+    marginBottom: '8px',
+    borderRadius: '20px',
+    marginRight: 'auto',
+    width: '80px',
+    height: '18px',
+    maxWidth: '500px',
+    fontSize: '16px',
+    fontFamily: 'Helvetica, sans-serif',
 };
   

@@ -4,9 +4,11 @@ const initialState = {
     foodReason: '',
     animal: '',
     animalReason: '',
+    colour: '',
+    colourReason: '',
 }
 
-const chatReducer = (state = initialState, action) => {
+const questionBotReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD_MESSAGE':
             return {
@@ -26,16 +28,28 @@ const chatReducer = (state = initialState, action) => {
         case 'ADD_ANIMAL':
             return {
                 ...state,
-                foodReason: action.payload,
+                animal: action.payload,
             };
         case 'ADD_ANIMAL_REASON':
             return {
                 ...state,
-                foodReason: action.payload,
+                animalReason: action.payload,
+            };
+        case 'ADD_COLOUR':
+            console.log("Adding colour: ", action.payload);
+            return {
+                ...state,
+                colour: action.payload,
+            };
+        case 'ADD_COLOUR_REASON':
+            console.log("Adding colour Reason: ", action.payload);
+            return {
+                ...state,
+                colourReason: action.payload,
             };
         default:
             return state;
     }
 }
 
-export default chatReducer;
+export default questionBotReducer;

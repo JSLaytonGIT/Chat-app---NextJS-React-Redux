@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, TextField, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { addMessage } from '../store/actions/chatActions';
+import { addMessage } from '../store/actions/questionBotActions';
 import { inputField, sendButton } from '@/styles/chatWindowStyles';
 
 const MessageInput = ({ onSendMessage }) => {

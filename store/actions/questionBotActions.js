@@ -22,3 +22,13 @@ export const addAnimalReason = (response) => ({
     type: 'ADD_ANIMAL_REASON',
     payload: response,
 });
+
+export const addColour = (response) => ({
+    type: 'ADD_COLOUR',
+    payload: response,
+});
+
+export const addColourReason = (response) => ({
+    type: 'ADD_COLOUR_REASON',
+    payload: response,
+});

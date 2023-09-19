@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import chatReducer from './reducers/chatReducer';
+import questionBotReducer from './reducers/questionBotReducer';
 
 const store = configureStore({
     reducer: {
-        chat: chatReducer
+        questionBot: questionBotReducer
     }
 });
 
