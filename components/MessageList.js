@@ -1,15 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, use } from 'react';
 import { Box } from '@mui/material';
-import { useSelector, shallowEqual } from 'react-redux';
-import { userMessageStyle, friendMessageStyle, loadingMessageStyle, messageContainer } from '@/styles/chatWindowStyles';
+import { useSelector, useDispatch } from 'react-redux';
+import { userMessageStyle, friendMessageStyle, loadingMessageStyle } from '@/styles/chatWindowStyles';
+import { changeFirstLoad } from '../store/actions/questionBotActions';
 import styles from '@/styles/messageList.module.css';
 
-
-const MessageList = () => {
-  const messages = useSelector((state) => state.questionBot.messages, shallowEqual);
-
+const MessageList = ({ hasLoaded, setHasLoaded }) => { 
+  const dispatch = useDispatch();
+  const messages = useSelector((state) => state.questionBot.messages);
+  const firstLoad = useSelector((state) => state.questionBot.firstLoad);
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [firstLoadTrigger, setFirstLoadTrigger] = useState(true);
+
+  useEffect(() =>{
+    if (!firstLoad && firstLoadTrigger) {
+      setDisplayedMessages(messages);
+    }
+    if (messages != 0) {
+      setFirstLoadTrigger(false);
+      dispatch(changeFirstLoad(false));
+    }
+  }, [messages, firstLoadTrigger])
 
   useEffect(() => {
     const addToDisplayedMessages = async () => {
@@ -23,14 +35,20 @@ const MessageList = () => {
         ]);
 
         if (message.user !=='You') {
-          await new Promise((resolve) => setTimeout(resolve, 2000));
+          await new Promise((resolve) => setTimeout(resolve, 1000));
         }
       }
       setIsLoading(false);
     };
-
-    addToDisplayedMessages();
+    if (firstLoad || !firstLoadTrigger) {
+      addToDisplayedMessages(); 
+    }
   }, [messages]);
+
+  useEffect(() => {
+    console.log("MESSAGESSSSSSSSS", messages);
+    console.log("DISPLAAAAAAAAYED", displayedMessages);
+  }, [messages, displayedMessages]);
 
   return (
     <Box>

@@ -6,11 +6,13 @@ const initialState = {
     animalReason: '',
     colour: '',
     colourReason: '',
+    questionBotChain: 0,
+    firstLoad: true,
 }
 
 const questionBotReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'ADD_MESSAGE':
+        case 'ADD_QUESTIONBOT_MESSAGE':
             return {
                 ...state,
                 messages: [...state.messages, { text: action.payload.message, user: action.payload.sender }],
@@ -46,6 +48,18 @@ const questionBotReducer = (state = initialState, action) => {
             return {
                 ...state,
                 colourReason: action.payload,
+            };
+        case 'CHANGE_QUESTIONBOT_CHAIN':
+            console.log("Changing question bot chain: ", action.payload);
+            return {
+                ...state,
+                questionBotChain: action.payload,
+            };
+        case 'CHANGE_FIRST_LOAD':
+            console.log("Changing first load: ", action.payload);
+            return {
+                ...state,
+                firstLoad: action.payload,
             };
         default:
             return state;

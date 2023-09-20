@@ -1,5 +1,5 @@
 export const addMessage = (message, sender) => ({
-    type: 'ADD_MESSAGE',
+    type: 'ADD_QUESTIONBOT_MESSAGE',
     payload: { message, sender },
 });
 
@@ -30,5 +30,15 @@ export const addColour = (response) => ({
 
 export const addColourReason = (response) => ({
     type: 'ADD_COLOUR_REASON',
+    payload: response,
+});
+
+export const changeQuestionBotChain = (response) => ({
+    type: 'CHANGE_QUESTIONBOT_CHAIN',
+    payload: response,
+});
+
+export const changeFirstLoad = (response) => ({
+    type: 'CHANGE_FIRST_LOAD',
     payload: response,
 });
