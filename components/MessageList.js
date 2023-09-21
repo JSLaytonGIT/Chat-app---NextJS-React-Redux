@@ -1,15 +1,39 @@
 import { useState, useEffect, use } from 'react';
 import { Box } from '@mui/material';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userMessageStyle, friendMessageStyle, loadingMessageStyle } from '@/styles/chatWindowStyles';
-import { changeFirstLoad } from '../store/actions/questionBotActions';
+import { changeFirstLoad, resetConversation } from '../store/actions/questionBotActions';
 import styles from '@/styles/messageList.module.css';
 
-const MessageList = ({ messages, firstLoad }) => { 
+const MessageList = ({ messages, firstLoad, restartFlag, setRestartFlag }) => { 
   const dispatch = useDispatch();
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [firstLoadTrigger, setFirstLoadTrigger] = useState(true);
+
+  const addToDisplayedMessages = async () => {
+    setIsLoading(true);
+    for (let i = displayedMessages.length; i < messages.length; i++) {
+      const message = messages[i];
+
+      setDisplayedMessages((prevDisplayedMessages) => [
+        ...prevDisplayedMessages,
+        message,
+      ]);
+
+      if (message.user !=='You') {
+        const randomTimeout = Math.floor(Math.random() * 500) + 500;
+        await new Promise((resolve) => setTimeout(resolve, randomTimeout));
+      }
+    }
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (!firstLoad && !firstLoadTrigger) {
+      addToDisplayedMessages();
+    }
+  }, [messages])
 
   useEffect(() =>{
     if (!firstLoad && firstLoadTrigger) {
@@ -22,26 +46,15 @@ const MessageList = ({ messages, firstLoad }) => {
   }, [messages, firstLoadTrigger])
 
   useEffect(() => {
-    const addToDisplayedMessages = async () => {
-      setIsLoading(true);
-      for (let i = displayedMessages.length; i < messages.length; i++) {
-        const message = messages[i];
-
-        setDisplayedMessages((prevDisplayedMessages) => [
-          ...prevDisplayedMessages,
-          message,
-        ]);
-
-        if (message.user !=='You') {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        }
-      }
-      setIsLoading(false);
-    };
-    if (firstLoad || !firstLoadTrigger) {
-      addToDisplayedMessages(); 
+    console.log(firstLoad, "EEEEEEEEEEEEEEEEEEEEEEEEEE", firstLoadTrigger);
+    if (restartFlag) {
+      setDisplayedMessages([]);
+      setFirstLoadTrigger(true);
     }
-  }, [messages]);
+    if ((firstLoad || !firstLoadTrigger)) {
+      addToDisplayedMessages();
+    }
+  }, [restartFlag, firstLoadTrigger]);
 
   useEffect(() => {
     console.log("MESSAGESSSSSSSSS", messages);

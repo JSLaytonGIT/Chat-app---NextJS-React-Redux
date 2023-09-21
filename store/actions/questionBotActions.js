@@ -42,3 +42,7 @@ export const changeFirstLoad = (response) => ({
     type: 'CHANGE_FIRST_LOAD',
     payload: response,
 });
+
+export const resetConversation = () => ({
+    type: 'RESET_CONVERSATION',
+  });

@@ -45,9 +45,17 @@ const AnagramBot = () => {
 
         setCurrentWord(selectedWord.word);
     };
+
+    useEffect(() => {
+        console.log(messages.length, "33333333333333333333333")
+        if (messages.length === 0) {
+            dispatch(changeFirstLoad(true));
+        }
+    }, [messages])
     
     useEffect(() => {
-        if (firstLoad || messages.length === 0) {
+        console.log(firstLoad, "PPPPPPPPPPPPPPPPPPPPPP");
+        if (firstLoad) {
             dispatch(addMessage("Hello there! 👋🤓", 'Bot'));
             dispatch(addMessage("I'm in a bit of a pickle right now...", 'Bot'));
             dispatch(addMessage("You see, I have a list of words in my database but they have gotten all scrambled...", 'Bot'));
@@ -58,7 +66,7 @@ const AnagramBot = () => {
             }, 0);
             startGame()
         }
-    }, [])
+    }, [firstLoad])
 
     const handleUserMessage = (userMessage) => {
         dispatch(addMessage(userMessage, 'You'));

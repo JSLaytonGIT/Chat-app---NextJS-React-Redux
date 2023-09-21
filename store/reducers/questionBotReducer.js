@@ -8,6 +8,7 @@ const initialState = {
     colourReason: '',
     questionBotChain: 0,
     firstLoad: true,
+    resetConversation: false,
 }
 
 const questionBotReducer = (state = initialState, action) => {
@@ -57,6 +58,12 @@ const questionBotReducer = (state = initialState, action) => {
                 ...state,
                 firstLoad: action.payload,
             };
+        case 'RESET_CONVERSATION':
+            return {
+                ...state,
+                messages: [],
+                resetConversation: true,
+            };    
         default:
             return state;
     }

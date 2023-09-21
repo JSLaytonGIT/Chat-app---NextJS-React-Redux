@@ -3,9 +3,9 @@ import { messageInputContainer, chatWindowContainer } from '@/styles/chatWindowS
 import { Box } from '@mui/material';
 import MessageList from '@/components/MessageList';
 import MessageInput from '@/components/MessageInput';
-import { foodExtractor, animalExtractor, colourExtractor, foodReasonExtractor, animalReasonExtractor, colourReasonExtractor } from '@/components/chatbots/questionBot';
+import { foodExtractor, animalExtractor, colourExtractor, foodReasonExtractor, animalReasonExtractor, colourReasonExtractor } from '@/utils/questionBotUtils';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage as adMessage, addFood, addFoodReason, addAnimal, addAnimalReason, addColour, addColourReason, changeQuestionBotChain } from '../store/actions/questionBotActions';
+import { addMessage as adMessage, addFood, addFoodReason, addAnimal, addAnimalReason, addColour, addColourReason, changeQuestionBotChain, changeFirstLoad, resetConversation } from '../store/actions/questionBotActions';
 
 const QuestionBot = () => {
     const dispatch = useDispatch();
@@ -18,9 +18,11 @@ const QuestionBot = () => {
     const questionBotChainStore = useSelector((state) => state.questionBot.questionBotChain);
     const messages = useSelector((state) => state.questionBot.messages);
     const firstLoad = useSelector((state) => state.questionBot.firstLoad);
+    const resetConversationFlag = useSelector((state) => state.questionBot.resetConversation);
 
     const [questionBotChainLocal, setQuestionBotChainLocal] = useState(questionBotChainStore);
-    
+    const [restartFlag, setRestartFlag] = useState(false);
+
     const setQuestionBotChain = (id) => {
         dispatch(changeQuestionBotChain(id));
         setQuestionBotChainLocal(id);
@@ -38,10 +40,20 @@ const QuestionBot = () => {
             addMessage("My name is Question Bot 🤠", 'Bot');
             addMessage("I'm here to ask you a few questions.", 'Bot');
             addMessage("Firstly... what is your favorite colour?", 'Bot');
+            if(restartFlag) {
+                setRestartFlag(false);
+            }
         }
-    }, [])
+    }, [messages])
 
     const handleUserMessage = (userMessage) => {
+        if (userMessage.toLowerCase() === 'restart') {
+            dispatch(resetConversation());
+            setQuestionBotChain(0);
+            dispatch(changeFirstLoad(false));
+            setRestartFlag(true);
+            return;
+        }
         addMessage(userMessage, 'You');
         if (questionBotChainLocal === 0) {
             const extractedColour = colourExtractor(userMessage);
@@ -51,7 +63,7 @@ const QuestionBot = () => {
             setQuestionBotChain(1);
         } else if (questionBotChainLocal == 1) {
             dispatch(addColourReason(colourReasonExtractor(userMessage)));
-            addMessage("Very interesting... I'll keep that in mind :D", 'Bot');
+            addMessage("Very interesting... I'll keep that in mind 🙂", 'Bot');
             addMessage("Next question...", 'Bot');
             addMessage("What is your favourite animal?", 'Bot');
             setQuestionBotChain(2);
@@ -68,7 +80,7 @@ const QuestionBot = () => {
             setQuestionBotChain(3);
         } else if (questionBotChainLocal == 3) {
             dispatch(addAnimalReason(animalReasonExtractor(userMessage)));
-            addMessage("Cool! I'll remember that :D", 'Bot');
+            addMessage("Cool! I'll remember that 😁", 'Bot');
             addMessage("Next Question...", 'Bot');
             addMessage("What is your favourite Food?", 'Bot');
             setQuestionBotChain(4);
@@ -104,13 +116,14 @@ const QuestionBot = () => {
             addMessage(`You would enjoy something that has the following attributes: ${extractedFoodReason}.`, 'Bot');
             addMessage(`I hope you enjoyed that! 😄`, 'Bot');
             addMessage(`Disclaimer - this is all a bit of fun, not psychology.`, 'Bot');
+            addMessage(`If you'd like, you can retry this test by typing in 'restart'.`, 'Bot');
             setQuestionBotChain(6);
         }
     };
 
     return (
         <Box style={chatWindowContainer}>
-            <MessageList style={{ flex: 1 }} messages={messages} firstLoad={firstLoad} />
+            <MessageList style={{ flex: 1 }} messages={messages} firstLoad={firstLoad} restartFlag={restartFlag} setRestartFlag={setRestartFlag} />
             <Box style={messageInputContainer}>
                 <MessageInput onSendMessage={handleUserMessage} />
             </Box>

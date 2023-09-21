@@ -16,9 +16,9 @@ const Sidebar = () => {
         <Box>
             <Button onClick={toggleSidebar} style={burger}>
             {sidebarOpen ? (
-                    <CloseIcon fontSize='large' style={{ color: 'white' }} /> // Show the "X" icon when the sidebar is open
+                    <CloseIcon fontSize='large' style={{ color: 'white' }} />
                 ) : (
-                    <MenuIcon fontSize='large' style={{ color: 'white', zIndex: 1300 }} /> // Show the menu icon when the sidebar is closed
+                    <MenuIcon fontSize='large' style={{ color: 'white', zIndex: 1300 }} />
                 )}
             </Button>
             <Drawer open={sidebarOpen}
