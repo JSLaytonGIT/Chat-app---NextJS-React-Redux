@@ -17,6 +17,7 @@ const QuestionBot = () => {
     const colourReason = useSelector((state) => state.questionBot.colourReason);
     const questionBotChainStore = useSelector((state) => state.questionBot.questionBotChain);
     const messages = useSelector((state) => state.questionBot.messages);
+    const firstLoad = useSelector((state) => state.questionBot.firstLoad);
 
     const [questionBotChainLocal, setQuestionBotChainLocal] = useState(questionBotChainStore);
     
@@ -34,7 +35,7 @@ const QuestionBot = () => {
     useEffect(() => {
         if (questionBotChainLocal === 0 ) {
             addMessage("Hello!", 'Bot');
-            addMessage("My name is Question Bot.", 'Bot');
+            addMessage("My name is Question Bot 🤠", 'Bot');
             addMessage("I'm here to ask you a few questions.", 'Bot');
             addMessage("Firstly... what is your favorite colour?", 'Bot');
         }
@@ -101,7 +102,7 @@ const QuestionBot = () => {
             addMessage(`And your favourite food was ${food}`, 'Bot');
             addMessage(`This is kind of work you'd like to pursue.`, 'Bot');
             addMessage(`You would enjoy something that has the following attributes: ${extractedFoodReason}.`, 'Bot');
-            addMessage(`I hope you enjoyed that!`, 'Bot');
+            addMessage(`I hope you enjoyed that! 😄`, 'Bot');
             addMessage(`Disclaimer - this is all a bit of fun, not psychology.`, 'Bot');
             setQuestionBotChain(6);
         }
@@ -109,7 +110,7 @@ const QuestionBot = () => {
 
     return (
         <Box style={chatWindowContainer}>
-            <MessageList style={{ flex: 1 }} messages={messages} />
+            <MessageList style={{ flex: 1 }} messages={messages} firstLoad={firstLoad} />
             <Box style={messageInputContainer}>
                 <MessageInput onSendMessage={handleUserMessage} />
             </Box>

@@ -1,0 +1,10 @@
+.clue {
+    background-color: white;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+  
+.clue:hover {
+    background-color: transparent;
+}
+  

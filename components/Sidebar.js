@@ -37,6 +37,11 @@ const Sidebar = () => {
                             <ListItemText primary="- Reflection Bot" />
                         </ListItemButton>
                     </Link>
+                    <Link href="/AnagramBot" style={{ textDecoration: 'none' }}>
+                        <ListItemButton sx={{ padding: "15px" }}>
+                            <ListItemText primary="- Anagram Bot" />
+                        </ListItemButton>
+                    </Link>
                 </List>
             </Drawer>
         </Box>

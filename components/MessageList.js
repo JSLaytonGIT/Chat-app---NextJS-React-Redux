@@ -5,9 +5,8 @@ import { userMessageStyle, friendMessageStyle, loadingMessageStyle } from '@/sty
 import { changeFirstLoad } from '../store/actions/questionBotActions';
 import styles from '@/styles/messageList.module.css';
 
-const MessageList = ({ messages }) => { 
+const MessageList = ({ messages, firstLoad }) => { 
   const dispatch = useDispatch();
-  const firstLoad = useSelector((state) => state.questionBot.firstLoad);
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [firstLoadTrigger, setFirstLoadTrigger] = useState(true);

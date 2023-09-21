@@ -38,25 +38,21 @@ const questionBotReducer = (state = initialState, action) => {
                 animalReason: action.payload,
             };
         case 'ADD_COLOUR':
-            console.log("Adding colour: ", action.payload);
             return {
                 ...state,
                 colour: action.payload,
             };
         case 'ADD_COLOUR_REASON':
-            console.log("Adding colour Reason: ", action.payload);
             return {
                 ...state,
                 colourReason: action.payload,
             };
         case 'CHANGE_QUESTIONBOT_CHAIN':
-            console.log("Changing question bot chain: ", action.payload);
             return {
                 ...state,
                 questionBotChain: action.payload,
             };
         case 'CHANGE_FIRST_LOAD':
-            console.log("Changing first load: ", action.payload);
             return {
                 ...state,
                 firstLoad: action.payload,
