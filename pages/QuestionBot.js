@@ -109,7 +109,7 @@ const QuestionBot = () => {
 
     return (
         <Box style={chatWindowContainer}>
-            <MessageList style={{ flex: 1 }} />
+            <MessageList style={{ flex: 1 }} messages={messages} />
             <Box style={messageInputContainer}>
                 <MessageInput onSendMessage={handleUserMessage} />
             </Box>

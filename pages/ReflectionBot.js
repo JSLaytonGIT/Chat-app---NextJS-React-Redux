@@ -31,10 +31,10 @@ const ReflectionBot = () => {
 
     return (
         <Box style={chatWindowContainer}>
-            {/* <MessageList style={{ flex: 1 }} messages={messages} hasLoaded={hasLoaded} setHasLoaded={setHasLoaded}/>
+            <MessageList style={{ flex: 1 }} messages={messages} hasLoaded={hasLoaded} setHasLoaded={setHasLoaded}/>
             <Box style={messageInputContainer}>
                 <MessageInput onSendMessage={handleUserMessage} />
-            </Box> */}
+            </Box>
         </Box>
     );
 }
