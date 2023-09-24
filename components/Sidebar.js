@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Drawer, Button, List, ListItemButton , ListItemText, Box, IconButton } from '@mui/material';
+import { Drawer, Button, List, ListItemButton , ListItemText, Box } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { burger, title } from '@/styles/sidebarStyles';

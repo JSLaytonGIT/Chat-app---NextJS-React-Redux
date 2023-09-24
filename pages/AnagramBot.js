@@ -47,14 +47,12 @@ const AnagramBot = () => {
     };
 
     useEffect(() => {
-        console.log(messages.length, "33333333333333333333333")
         if (messages.length === 0) {
             dispatch(changeFirstLoad(true));
         }
     }, [messages])
     
     useEffect(() => {
-        console.log(firstLoad, "PPPPPPPPPPPPPPPPPPPPPP");
         if (firstLoad) {
             dispatch(addMessage("Hello there! 👋🤓", 'Bot'));
             dispatch(addMessage("I'm in a bit of a pickle right now...", 'Bot'));

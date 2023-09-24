@@ -1,11 +1,11 @@
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { userMessageStyle, friendMessageStyle, loadingMessageStyle } from '@/styles/chatWindowStyles';
-import { changeFirstLoad, resetConversation } from '../store/actions/questionBotActions';
+import { changeFirstLoad } from '../store/actions/questionBotActions';
 import styles from '@/styles/messageList.module.css';
 
-const MessageList = ({ messages, firstLoad, restartFlag, setRestartFlag }) => { 
+const MessageList = ({ messages, firstLoad, restartFlag }) => { 
   const dispatch = useDispatch();
   const [displayedMessages, setDisplayedMessages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -22,8 +22,7 @@ const MessageList = ({ messages, firstLoad, restartFlag, setRestartFlag }) => {
       ]);
 
       if (message.user !=='You') {
-        const randomTimeout = Math.floor(Math.random() * 500) + 500;
-        await new Promise((resolve) => setTimeout(resolve, randomTimeout));
+        await new Promise((resolve) => setTimeout(resolve, 1700));
       }
     }
     setIsLoading(false);
@@ -46,7 +45,6 @@ const MessageList = ({ messages, firstLoad, restartFlag, setRestartFlag }) => {
   }, [messages, firstLoadTrigger])
 
   useEffect(() => {
-    console.log(firstLoad, "EEEEEEEEEEEEEEEEEEEEEEEEEE", firstLoadTrigger);
     if (restartFlag) {
       setDisplayedMessages([]);
       setFirstLoadTrigger(true);
@@ -55,11 +53,6 @@ const MessageList = ({ messages, firstLoad, restartFlag, setRestartFlag }) => {
       addToDisplayedMessages();
     }
   }, [restartFlag, firstLoadTrigger]);
-
-  useEffect(() => {
-    console.log("MESSAGESSSSSSSSS", messages);
-    console.log("DISPLAAAAAAAAYED", displayedMessages);
-  }, [messages, displayedMessages]);
 
   return (
     <Box>

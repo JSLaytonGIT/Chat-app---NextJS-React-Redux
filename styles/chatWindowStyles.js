@@ -9,7 +9,7 @@ export const messageInputContainer = {
 export const chatWindowContainer = {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100vh',
+    minHeight: 'calc(100vh - 120px)',
     position: 'relative',
     backgroundColor: '#333542',
     padding: '20px',

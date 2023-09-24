@@ -44,13 +44,10 @@ export const randomBotResponse = () => {
     const randomNumber = Math.random();
   
     if (randomNumber < 1 / 3) {
-        console.log("Fantast")
       return 'Fantastic!';
     } else if (randomNumber < 2 / 3) {
-        console.log("Brill")
       return 'Brilliant!';
     } else {
-        console.log("Wonder")
       return 'Wonderful!';
     }
 };

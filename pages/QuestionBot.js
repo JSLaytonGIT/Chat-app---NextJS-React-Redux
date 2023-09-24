@@ -10,7 +10,6 @@ import { addMessage as adMessage, addFood, addFoodReason, addAnimal, addAnimalRe
 const QuestionBot = () => {
     const dispatch = useDispatch();
     const food = useSelector((state) => state.questionBot.food);
-    const foodReason = useSelector((state) => state.questionBot.foodReason);
     const animal = useSelector((state) => state.questionBot.animal);
     const animalReason = useSelector((state) => state.questionBot.animalReason);
     const colour = useSelector((state) => state.questionBot.colour);
@@ -18,7 +17,6 @@ const QuestionBot = () => {
     const questionBotChainStore = useSelector((state) => state.questionBot.questionBotChain);
     const messages = useSelector((state) => state.questionBot.messages);
     const firstLoad = useSelector((state) => state.questionBot.firstLoad);
-    const resetConversationFlag = useSelector((state) => state.questionBot.resetConversation);
 
     const [questionBotChainLocal, setQuestionBotChainLocal] = useState(questionBotChainStore);
     const [restartFlag, setRestartFlag] = useState(false);
@@ -116,7 +114,7 @@ const QuestionBot = () => {
             addMessage(`You would enjoy something that has the following attributes: ${extractedFoodReason}.`, 'Bot');
             addMessage(`I hope you enjoyed that! 😄`, 'Bot');
             addMessage(`Disclaimer - this is all a bit of fun, not psychology.`, 'Bot');
-            addMessage(`If you'd like, you can retry this test by typing in 'restart'.`, 'Bot');
+            addMessage(`If you'd like, you can retry this test by typing in 'restart'`, 'Bot');
             setQuestionBotChain(6);
         }
     };
