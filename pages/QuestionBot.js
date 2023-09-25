@@ -108,9 +108,9 @@ const QuestionBot = () => {
                 addMessage(`Your favourite animals are ${animal}.`, 'Bot');
             }
             addMessage(`This is your prefered partner.`, 'Bot');
-            addMessage(`You would be happy with someone who has the folling attributes: ${animalReason}.`, 'Bot');
+            addMessage(`You would be happy with someone who has the following attributes: ${animalReason}.`, 'Bot');
             addMessage(`And your favourite food was ${food}`, 'Bot');
-            addMessage(`This is kind of work you'd like to pursue.`, 'Bot');
+            addMessage(`This is the kind of work you'd like to pursue.`, 'Bot');
             addMessage(`You would enjoy something that has the following attributes: ${extractedFoodReason}.`, 'Bot');
             addMessage(`I hope you enjoyed that! 😄`, 'Bot');
             addMessage(`Disclaimer - this is all a bit of fun, not psychology.`, 'Bot');
