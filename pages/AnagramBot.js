@@ -57,7 +57,7 @@ const AnagramBot = () => {
             dispatch(addMessage("Hello there! 👋🤓", 'Bot'));
             dispatch(addMessage("I'm in a bit of a pickle right now...", 'Bot'));
             dispatch(addMessage("You see, I have a list of words in my database but they have gotten all scrambled...", 'Bot'));
-            dispatch(addMessage("Can you help me??", 'Bot'));
+            dispatch(addMessage("Can you help me figure out what words they're supposed to be??", 'Bot'));
             dispatch(addMessage("Here is the first word:", 'Bot'));
             setTimeout(() => {
                 dispatch(changeFirstLoad(false));
