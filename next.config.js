@@ -6,7 +6,7 @@ module.exports = {
         {
           source: '/',
           destination: '/QuestionBot',
-          permanent: true,
+          permanent: false,
         },
       ]
     },

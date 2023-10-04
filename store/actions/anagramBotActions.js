@@ -7,3 +7,8 @@ export const changeFirstLoad = (response) => ({
     type: 'CHANGE_FIRST_LOAD',
     payload: response,
 });
+
+export const addCurrentWord = (message, sender) => ({
+    type: 'ADD_CURRENT_WORD',
+    payload: { message, sender },
+});

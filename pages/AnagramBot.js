@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import MessageList from '@/components/MessageList';
 import MessageInput from '@/components/MessageInput';
 import { useDispatch, useSelector } from 'react-redux';
-import { addMessage, changeFirstLoad } from '../store/actions/anagramBotActions';
+import { addMessage, changeFirstLoad, addCurrentWord } from '../store/actions/anagramBotActions';
 import { wordList, randomBotResponse } from '@/utils/anagramBotUtils';
 import styles from '@/styles/anagramBot.module.css';
 
@@ -12,7 +12,7 @@ const AnagramBot = () => {
     const dispatch = useDispatch();
     const messages = useSelector((state) => state.anagramBot.messages);
     const firstLoad = useSelector((state) => state.anagramBot.firstLoad);
-    const [currentWord, setCurrentWord] = useState(null);
+    const currentWord = useSelector((state) => state.anagramBot.currentWord.message);
 
     const scrambleWord = (word) => {
         const characters = word.split('');
@@ -42,8 +42,7 @@ const AnagramBot = () => {
 
         dispatch(addMessage(`${scrambledWord}`, 'Bot'));
         dispatch(addMessage(clueElement, 'Bot'));
-
-        setCurrentWord(selectedWord.word);
+        dispatch(addCurrentWord(selectedWord.word));
     };
 
     useEffect(() => {
@@ -62,7 +61,7 @@ const AnagramBot = () => {
             setTimeout(() => {
                 dispatch(changeFirstLoad(false));
             }, 0);
-            startGame()
+            startGame();
         }
     }, [firstLoad])
 

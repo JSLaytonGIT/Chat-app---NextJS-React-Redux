@@ -1,6 +1,7 @@
 const initialState = {
     messages: [],
     firstLoad: true,
+    currentWord: '',
 }
 
 const anagramBotReducer = (state = initialState, action) => {
@@ -15,6 +16,11 @@ const anagramBotReducer = (state = initialState, action) => {
                 ...state,
                 firstLoad: action.payload,
             };
+        case 'ADD_CURRENT_WORD':
+            return {
+                ...state,
+                currentWord: action.payload,
+            }
         default:
             return state;
     }
