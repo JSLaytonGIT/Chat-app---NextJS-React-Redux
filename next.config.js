@@ -5,7 +5,7 @@ module.exports = {
       return [
         {
           source: '/',
-          destination: '/QuestionBot',
+          destination: '/AnagramBot',
           permanent: false,
         },
       ]
